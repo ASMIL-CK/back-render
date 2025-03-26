@@ -30,7 +30,7 @@ const Task = mongoose.model('Task', taskSchema);
 
 // API Endpoints
 app.get('/', (req, res) => {
-  res.send('Backend is up and running!');
+  res.send('Backend is up and running!');// Home route
 });
 
 
@@ -44,6 +44,15 @@ app.post('/tasks', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.get('/tasks', async (req, res) => {
+  try {
+    const tasks = await Task.find({});
+    res.json(tasks);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});  // Get all tasks
 
 app.get('/tasks/:id', async (req, res) => {
   const { id } = req.params;
