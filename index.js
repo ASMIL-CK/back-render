@@ -29,6 +29,11 @@ const taskSchema = new mongoose.Schema({
 const Task = mongoose.model('Task', taskSchema);
 
 // API Endpoints
+app.get('/', (req, res) => {
+  res.send('Backend is up and running!');
+});
+
+
 app.post('/tasks', async (req, res) => {
   try {
     const { title, description } = req.body;
